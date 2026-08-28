@@ -1,31 +1,11 @@
-import { promises as fs } from "fs";
-import path from "path";
 import type { Inquiry, RentalSite } from "./types";
+import { loadJson, saveJson } from "./persist";
 
-const dataDir = path.join(process.cwd(), "data");
-const sitesFile = path.join(dataDir, "sites.json");
-const inquiriesFile = path.join(dataDir, "inquiries.json");
-
-async function ensureDir() {
-  await fs.mkdir(dataDir, { recursive: true });
-}
-
-async function readJson<T>(file: string, fallback: T): Promise<T> {
-  try {
-    const raw = await fs.readFile(file, "utf8");
-    return JSON.parse(raw) as T;
-  } catch {
-    return fallback;
-  }
-}
-
-async function writeJson(file: string, value: unknown) {
-  await ensureDir();
-  await fs.writeFile(file, JSON.stringify(value, null, 2), "utf8");
-}
+const SITES = "sites.json";
+const INQUIRIES = "inquiries.json";
 
 export async function getSites(): Promise<RentalSite[]> {
-  const sites = await readJson<RentalSite[]>(sitesFile, []);
+  const sites = await loadJson<RentalSite[]>(SITES, []);
   return [...sites].sort((a, b) => a.sortOrder - b.sortOrder || a.createdAt.localeCompare(b.createdAt));
 }
 
@@ -40,7 +20,7 @@ export async function getSite(id: string): Promise<RentalSite | undefined> {
 }
 
 export async function saveSites(sites: RentalSite[]) {
-  await writeJson(sitesFile, sites);
+  await saveJson(SITES, sites);
 }
 
 export async function upsertSite(input: Omit<RentalSite, "id" | "createdAt"> & { id?: string }): Promise<RentalSite> {
@@ -69,7 +49,7 @@ export async function deleteSite(id: string) {
 }
 
 export async function getInquiries(): Promise<Inquiry[]> {
-  const items = await readJson<Inquiry[]>(inquiriesFile, []);
+  const items = await loadJson<Inquiry[]>(INQUIRIES, []);
   return [...items].sort((a, b) => b.createdAt.localeCompare(a.createdAt));
 }
 
@@ -82,7 +62,7 @@ export async function addInquiry(input: Omit<Inquiry, "id" | "createdAt" | "read
     read: false,
   };
   items.unshift(inquiry);
-  await writeJson(inquiriesFile, items);
+  await saveJson(INQUIRIES, items);
   return inquiry;
 }
 
@@ -91,12 +71,15 @@ export async function markInquiryRead(id: string, read: boolean) {
   const idx = items.findIndex((i) => i.id === id);
   if (idx < 0) return;
   items[idx] = { ...items[idx], read };
-  await writeJson(inquiriesFile, items);
+  await saveJson(INQUIRIES, items);
 }
 
 export async function deleteInquiry(id: string) {
   const items = await getInquiries();
-  await writeJson(inquiriesFile, items.filter((i) => i.id !== id));
+  await saveJson(
+    INQUIRIES,
+    items.filter((i) => i.id !== id),
+  );
 }
 
 export async function unreadInquiryCount(): Promise<number> {

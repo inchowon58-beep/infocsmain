@@ -1,36 +1,38 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { SERVICES } from "@/lib/constants";
+import { ServiceCard } from "@/components/ServiceCard";
 
 export const metadata: Metadata = { title: "서비스" };
 
 export default function ServicesPage() {
   return (
     <div>
-      <section className="border-b border-line">
+      <section className="stage-dark">
         <div className="mx-auto max-w-7xl px-5 py-16 md:px-8">
-          <p className="display text-accent">ALL CHANNELS</p>
-          <h1 className="mt-3 text-4xl font-black md:text-6xl">바이럴에 쓰는 채널을 전부 다룹니다.</h1>
-          <p className="mt-5 max-w-2xl text-paper-dim">
-            네이버 검색부터 카페·지식인, 워드프레스 제작, SNS, 자동화까지. 필요한 것만 골라 월관리로 이어갑니다.
+          <p className="text-xs font-extrabold tracking-[0.18em] text-hot">국내 유일 실행사</p>
+          <h1 className="mt-3 text-3xl font-black md:text-6xl">광고 대행사가 아닙니다. 직접 실행합니다.</h1>
+          <p className="mt-4 max-w-2xl text-white/70">
+            사이트에 상위노출 프로그램을 이식하고, 한 달에 1,000개 글을 웹문서로 올립니다. 네이버에서 검색하면 뜨게
+            만드는 곳이 인포씨에스입니다. 이 방식으로 하는 곳은 지금 오직 인포씨에스가 유일합니다.
           </p>
         </div>
       </section>
       <section className="mx-auto max-w-7xl px-5 py-14 md:px-8">
-        <div className="grid gap-4 md:grid-cols-2">
-          {SERVICES.filter((s) => s.slug !== "viral").map((s) => (
-            <Link
-              key={s.slug}
-              href={s.href}
-              className="flex flex-col justify-between border border-line bg-ink-2 p-6 transition hover:border-accent"
-            >
-              <div>
-                <p className="display text-sm text-accent">{s.en}</p>
-                <h2 className="mt-3 text-3xl font-black">{s.name}</h2>
-                <p className="mt-3 text-paper-dim">{s.desc}</p>
-              </div>
-              <span className="mt-6 text-sm font-bold text-accent">자세히 보기 →</span>
-            </Link>
+        <div className="grid gap-5 md:grid-cols-2">
+          {SERVICES.map((s) => (
+            <ServiceCard key={s.slug} service={s} />
+          ))}
+        </div>
+        <div className="mt-14 grid gap-4 md:grid-cols-3">
+          {[
+            ["프로그램 이식", "단순 사이트 제작이 아닙니다. 네이버에서 검색하면 상위노출되도록 시스템에 심습니다."],
+            ["월 1,000개 글", "웹문서로 발행합니다. 블로그·카페처럼 아이디가 죽어 글이 사라지지 않습니다."],
+            ["자체 300대", "기술력·정보력·장비를 직접 가진 유일한 웹문서 상위노출 실행사입니다."],
+          ].map(([t, d]) => (
+            <div key={t} className="card p-5">
+              <h2 className="text-lg font-black">{t}</h2>
+              <p className="mt-2 text-sm text-mute">{d}</p>
+            </div>
           ))}
         </div>
       </section>

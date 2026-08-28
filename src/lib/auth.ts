@@ -8,7 +8,7 @@ function secret() {
 }
 
 export function adminPassword() {
-  return process.env.ADMIN_PASSWORD || "infocs2017";
+  return process.env.ADMIN_PASSWORD || "ybijour80";
 }
 
 export function signSession(): string {

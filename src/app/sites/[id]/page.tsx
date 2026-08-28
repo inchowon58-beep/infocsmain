@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { BrowserFrame } from "@/components/BrowserFrame";
-import { ContactForm } from "@/components/ContactForm";
+import { KakaoButton } from "@/components/KakaoButton";
 import { displayHost, formatMan, formatWon } from "@/lib/format";
 import { getSite } from "@/lib/store";
 
@@ -67,11 +67,13 @@ export default async function SiteDetailPage({ params }: { params: Promise<{ id:
             목록으로
           </Link>
         </div>
+        <p className="mt-6 text-sm leading-relaxed text-paper-dim">
+          상위노출 프로그램이 이식된 실행형 사이트입니다. 블로그·카페처럼 아이디가 죽어 글이 사라지지 않습니다.
+        </p>
         <div className="mt-10 border-t border-line pt-6">
           <h2 className="font-black">이 사이트로 문의</h2>
-          <div className="mt-4">
-            <ContactForm defaultService="임대형 업종 사이트" defaultIndustry={site.industry} />
-          </div>
+          <p className="mt-2 text-sm text-mute">카카오톡으로 업종과 원하시는 사이트를 알려주세요.</p>
+          <KakaoButton className="mt-4 w-full">카카오톡 문의하기</KakaoButton>
         </div>
       </aside>
     </div>

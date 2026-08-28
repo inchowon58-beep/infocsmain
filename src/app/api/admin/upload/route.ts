@@ -1,7 +1,6 @@
-import { promises as fs } from "fs";
-import path from "path";
 import { NextResponse } from "next/server";
 import { unauthorizedIfNotAdmin, badRequest } from "@/lib/api";
+import { saveUpload } from "@/lib/persist";
 
 const ALLOWED = new Set(["image/jpeg", "image/png", "image/webp", "image/gif"]);
 
@@ -17,9 +16,10 @@ export async function POST(req: Request) {
 
   const ext = file.type.split("/")[1] === "jpeg" ? "jpg" : file.type.split("/")[1];
   const name = `${Date.now()}-${crypto.randomUUID().slice(0, 8)}.${ext}`;
-  const dir = path.join(process.cwd(), "public", "uploads");
-  await fs.mkdir(dir, { recursive: true });
-  const buf = Buffer.from(await file.arrayBuffer());
-  await fs.writeFile(path.join(dir, name), buf);
-  return NextResponse.json({ url: `/uploads/${name}` });
+  try {
+    const url = await saveUpload(name, Buffer.from(await file.arrayBuffer()), file.type);
+    return NextResponse.json({ url });
+  } catch (err) {
+    return badRequest(err instanceof Error ? err.message : "업로드에 실패했습니다.");
+  }
 }

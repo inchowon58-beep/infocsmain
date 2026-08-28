@@ -9,7 +9,7 @@ type Props = {
   site?: RentalSite;
 };
 
-const field = "w-full border border-line bg-ink px-4 py-3 outline-none focus:border-accent";
+const field = "w-full border border-line bg-ink-2 px-4 py-3 outline-none focus:border-accent";
 
 export function SiteForm({ site }: Props) {
   const router = useRouter();

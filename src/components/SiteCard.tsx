@@ -2,16 +2,17 @@ import Link from "next/link";
 import type { RentalSite } from "@/lib/types";
 import { displayHost, formatMan } from "@/lib/format";
 import { BrowserFrame } from "./BrowserFrame";
+import { KakaoButton } from "./KakaoButton";
 
 export function SiteCard({ site }: { site: RentalSite }) {
   return (
-    <article className="group border border-line bg-ink-2 transition hover:-translate-y-1 hover:border-accent">
+    <article className="card group">
       <Link href={`/sites/${site.id}`} className="block">
         <BrowserFrame src={site.previewImage} alt={site.name} href={site.url} />
       </Link>
       <div className="space-y-3 p-5">
         <div className="flex items-center justify-between gap-3">
-          <span className="bg-accent px-2 py-0.5 text-xs font-extrabold text-white">{site.industry}</span>
+          <span className="rounded-full bg-accent px-2.5 py-0.5 text-xs font-extrabold text-white">{site.industry}</span>
           <span className="display text-sm text-mute">RENT</span>
         </div>
         <h3 className="text-xl font-black tracking-tight">{site.name}</h3>
@@ -46,14 +47,12 @@ export function SiteCard({ site }: { site: RentalSite }) {
 
 export function EmptySites() {
   return (
-    <div className="border border-dashed border-line-strong px-6 py-16 text-center">
+    <div className="card border-dashed px-6 py-16 text-center">
       <p className="display text-4xl text-mute">NO LISTINGS</p>
       <p className="mt-3 text-paper-dim">
         현재 등록된 임대 사이트가 없습니다. 문의 주시면 업종에 맞게 안내합니다.
       </p>
-      <a href="/contact" className="btn-accent mt-6 inline-flex">
-        상담 문의
-      </a>
+      <KakaoButton className="mt-6">카카오톡 문의하기</KakaoButton>
     </div>
   );
 }

@@ -1,124 +1,103 @@
 import Link from "next/link";
+import { CalendarDays, Cpu, MessageCircle, Settings } from "lucide-react";
 import { EmptySites, SiteCard } from "@/components/SiteCard";
 import { SectionHeading } from "@/components/SectionHeading";
-import { COMPANY, PRICING, PROCESS, SERVICES } from "@/lib/constants";
-import { formatMan } from "@/lib/format";
+import { KakaoButton } from "@/components/KakaoButton";
+import { ServiceCard } from "@/components/ServiceCard";
+import { WhyInfocs } from "@/components/WhyInfocs";
+import { MonthlyPrice } from "@/components/MonthlyPrice";
+import { COMPANY, MANAGED_INDUSTRIES, PROCESS, SERVICES } from "@/lib/constants";
 import { getPublicSites } from "@/lib/store";
 
 export const dynamic = "force-dynamic";
 
-const ticker = [
-  "BLOG",
-  "CAFE",
-  "WORDPRESS",
-  "WEB RANKING",
-  "AUTOMATION",
-  "INSTAGRAM",
-  "YOUTUBE",
-  "지식인",
-  "VIRAL",
+const PROCESS_ICONS = [
+  { Icon: MessageCircle, anim: "anim-bounce" },
+  { Icon: Settings, anim: "anim-spin" },
+  { Icon: Cpu, anim: "anim-pulse" },
+  { Icon: CalendarDays, anim: "anim-float" },
 ];
 
 export default async function HomePage() {
   const sites = await getPublicSites();
-  const featured = SERVICES.filter((s) => s.slug !== "viral");
 
   return (
     <div>
-      <section className="noise relative overflow-hidden border-b border-line">
-        <div className="relative z-10 mx-auto grid max-w-7xl gap-10 px-5 py-16 md:grid-cols-[1.3fr_0.7fr] md:px-8 md:py-24">
+      <section className="stage-dark">
+        <div className="mx-auto grid max-w-7xl items-center gap-10 px-5 py-16 md:grid-cols-[1.15fr_0.85fr] md:px-8 md:py-24">
           <div>
-            <p className="display text-accent">VIRAL / RANK / RENT</p>
-            <h1 className="mt-4 text-5xl font-black leading-[0.95] tracking-tight md:text-7xl lg:text-8xl">
-              네이버가 찾는
+            <span className="inline-flex items-center gap-2 rounded-full border border-accent/40 bg-accent/10 px-3 py-1 text-xs font-extrabold text-accent">
+              <span className="h-2 w-2 animate-pulse rounded-full bg-accent" />
+              국내 유일 웹문서 상위노출 실행사 · 광고 대행사 아님
+            </span>
+            <h1 className="mt-6 max-w-4xl text-[2.35rem] font-black leading-[1.12] tracking-tight md:text-7xl">
+              네이버 <em className="hit-pct">99%</em> 상위노출
               <br />
-              자리를 만듭니다.
+              사이트 제작의 <em className="hit-secret">비밀</em>.
             </h1>
-            <p className="mt-6 max-w-xl text-lg text-paper-dim">
-              {COMPANY.name}는 블로그·카페·워드프레스·웹문서 상위노출·자동화·인스타·유튜브·지식인
-              바이럴 전문업체입니다. 상위노출부터 임대형 업종 사이트까지 한 곳에서 굴립니다.
+            <p className="mt-6 max-w-2xl text-base leading-relaxed text-white/70 md:text-lg">
+              네이버에서 검색하면 왜 어떤 사이트만 위에 뜰까요. {COMPANY.name}는 그 자리에 사이트를 올리는 실행사입니다.
+              대행이 아닙니다. 우리가 직접 프로그램을 이식하고, 한 달에 1,000개 글을 웹문서로 노출합니다.
+            </p>
+            <p className="mt-4 max-w-2xl text-base font-bold text-hot">
+              이 방식으로 네이버 상위노출을 하는 곳은, 지금 오직 인포씨에스가 유일합니다.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <Link href="/contact" className="btn-accent">
-                상담 문의
-              </Link>
-              <Link href="/sites" className="btn-ghost">
+              <KakaoButton>카카오톡 문의하기</KakaoButton>
+              <Link href="/sites" className="btn-ghost-dark">
                 임대 사이트 보기
               </Link>
             </div>
           </div>
-          <div className="grid content-end gap-3">
-            <div className="slash-card border border-line bg-ink-2 p-6">
-              <p className="display text-sm text-mute">SETUP</p>
-              <p className="text-5xl font-black">{formatMan(PRICING.rankingSetup)}</p>
-              <p className="mt-1 text-sm text-mute">네이버 웹문서 상위노출 사이트 셋팅</p>
-            </div>
-            <div className="slash-card border border-line bg-ink-2 p-6">
-              <p className="display text-sm text-mute">MONTHLY</p>
-              <p className="text-5xl font-black">{formatMan(PRICING.rankingMonthly)}</p>
-              <p className="mt-1 text-sm text-mute">키워드 {PRICING.rankingKeywords.toLocaleString()}개 월 발행</p>
-            </div>
+          <MonthlyPrice />
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-5 py-16 md:px-8 md:py-20">
+        <WhyInfocs />
+      </section>
+
+      <section className="bg-ink-2">
+        <div className="mx-auto max-w-7xl px-5 py-16 md:px-8">
+          <SectionHeading
+            kicker="SERVICE"
+            title="실행은 두 가지입니다."
+            body="상위노출 프로그램을 이식하고, 그 사이트를 직접 제작·월관리합니다."
+          />
+          <div className="mt-10 grid gap-5 md:grid-cols-2">
+            {SERVICES.map((s) => (
+              <ServiceCard key={s.slug} service={s} />
+            ))}
           </div>
         </div>
       </section>
 
-      <div className="marquee">
-        <div className="marquee-track">
-          {[...ticker, ...ticker].map((item, i) => (
-            <span key={`${item}-${i}`}>
-              {item} <span className="text-accent">/</span>
+      <section className="mx-auto max-w-7xl px-5 py-16 md:px-8">
+        <SectionHeading
+          kicker="INDUSTRY"
+          title="지금 임대·관리 중인 업종"
+          body="분양·병원·카페부터 철거·회생까지, 네이버에서 고객이 찾아오는 사이트를 직접 실행하고 있습니다."
+        />
+        <div className="mt-8 flex flex-wrap gap-2">
+          {MANAGED_INDUSTRIES.map((item) => (
+            <span
+              key={item}
+              className="rounded-full border border-line bg-white px-3.5 py-1.5 text-sm font-bold shadow-sm"
+            >
+              {item}
             </span>
           ))}
-        </div>
-      </div>
-
-      <section className="border-b border-line">
-        <div className="mx-auto grid max-w-7xl grid-cols-2 md:grid-cols-4">
-          {[
-            { n: "2017", l: "운영 시작" },
-            { n: "2026", l: "현재" },
-            { n: "8", l: "핵심 채널" },
-            { n: "월관리", l: "끊기지 않는 발행" },
-          ].map((item) => (
-            <div key={item.l} className="border-line px-5 py-8 md:border-r md:last:border-r-0">
-              <p className="display text-5xl text-accent md:text-6xl">{item.n}</p>
-              <p className="mt-2 text-sm font-bold text-paper-dim">{item.l}</p>
-            </div>
-          ))}
+          <span className="rounded-full bg-accent px-3.5 py-1.5 text-sm font-extrabold text-white">외 다수</span>
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-5 py-20 md:px-8">
-        <SectionHeading
-          kicker="SERVICES"
-          title="채널을 나눠 쓰지 않습니다."
-          body="검색·커뮤니티·SNS를 한 회사에서 묶습니다. 필요한 채널만 골라 시작해도 됩니다."
-        />
-        <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {featured.map((s) => (
-            <Link
-              key={s.slug}
-              href={s.href}
-              className="slash-card group border border-line bg-ink-2 p-5 transition hover:border-accent"
-            >
-              <div className="flex items-center justify-between">
-                <span className="display text-sm text-accent">{s.en}</span>
-                <span className="text-[11px] font-bold text-mute">{s.tag}</span>
-              </div>
-              <h3 className="mt-6 text-2xl font-black">{s.name}</h3>
-              <p className="mt-3 text-sm leading-relaxed text-mute">{s.desc}</p>
-            </Link>
-          ))}
-        </div>
-      </section>
-
-      <section className="border-y border-line bg-ink-2">
-        <div className="mx-auto max-w-7xl px-5 py-20 md:px-8">
+      <section className="bg-ink-2">
+        <div className="mx-auto max-w-7xl px-5 py-16 md:px-8">
           <div className="flex flex-wrap items-end justify-between gap-6">
             <SectionHeading
               kicker="RENTAL SITES"
               title="지금 임대 가능한 사이트"
-              body="관리자가 등록한 업종 사이트가 여기에 올라옵니다. 미리보기와 월 임대·셋팅비를 바로 확인하세요."
+              body="상위노출 프로그램이 이식된 업종 사이트입니다. 미리보기와 월 임대·셋팅비를 확인하세요."
             />
             <Link href="/sites" className="btn-ghost">
               전체 보기
@@ -138,81 +117,52 @@ export default async function HomePage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-5 py-20 md:px-8">
-        <SectionHeading kicker="PRICING" title="기본 요금은 이렇습니다." />
-        <div className="mt-10 grid gap-4 md:grid-cols-3">
-          <PriceBlock
-            label="SETUP"
-            value={formatMan(PRICING.rankingSetup)}
-            note="1회"
-            title="네이버 웹문서 상위노출 셋팅"
+      <section className="stage-dark">
+        <div className="mx-auto max-w-7xl px-5 py-16 md:px-8 md:py-20">
+          <SectionHeading
+            dark
+            kicker="PRICE"
+            title="실행 비용은 이렇습니다."
+            body="대행 마진을 붙이지 않습니다. 우리가 직접 돌리니 최저 금액으로 효과가 나게 만듭니다."
           />
-          <PriceBlock
-            label="KEYWORDS"
-            value={formatMan(PRICING.rankingMonthly)}
-            note={`월 / ${PRICING.rankingKeywords.toLocaleString()}키워드`}
-            title="월 발행"
-          />
-          <PriceBlock
-            label="BRAND BLOG"
-            value={formatMan(PRICING.brandBlogMonthly)}
-            note={`월 / ${PRICING.brandBlogPosts}포스팅`}
-            title="브랜드블로그 월관리"
-          />
-        </div>
-        <p className="mt-6 text-sm text-mute">임대형 사이트 가격은 사이트마다 다르며, 목록에 표시된 금액이 기준입니다.</p>
-        <Link href="/pricing" className="mt-4 inline-block font-bold text-accent">
-          요금 자세히 보기 →
-        </Link>
-      </section>
-
-      <section className="border-t border-line">
-        <div className="mx-auto max-w-7xl px-5 py-20 md:px-8">
-          <SectionHeading kicker="PROCESS" title="상담에서 월관리까지." />
-          <div className="mt-10 grid gap-4 md:grid-cols-4">
-            {PROCESS.map((p) => (
-              <div key={p.step} className="border border-line p-5">
-                <p className="display text-4xl text-accent">{p.step}</p>
-                <h3 className="mt-4 text-xl font-black">{p.title}</h3>
-                <p className="mt-2 text-sm text-mute">{p.body}</p>
-              </div>
-            ))}
+          <div className="mt-10 max-w-xl">
+            <MonthlyPrice />
           </div>
-        </div>
-      </section>
-
-      <section className="border-t border-line bg-accent text-white">
-        <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-6 px-5 py-16 md:flex-row md:items-center md:px-8">
-          <div>
-            <p className="display text-sm">LET’S WORK</p>
-            <h2 className="mt-2 text-4xl font-black md:text-5xl">업종과 키워드를 알려주세요.</h2>
-          </div>
-          <Link href="/contact" className="bg-ink px-6 py-4 font-black text-paper hover:bg-black">
-            상담 문의
+          <Link href="/pricing" className="mt-8 inline-block font-extrabold text-hot">
+            요금 자세히 보기 →
           </Link>
         </div>
       </section>
-    </div>
-  );
-}
 
-function PriceBlock({
-  label,
-  value,
-  note,
-  title,
-}: {
-  label: string;
-  value: string;
-  note: string;
-  title: string;
-}) {
-  return (
-    <div className="slash-card border border-line bg-ink-2 p-6">
-      <p className="display text-sm text-accent">{label}</p>
-      <p className="mt-6 text-5xl font-black">{value}</p>
-      <p className="mt-1 text-xs font-bold text-mute">{note}</p>
-      <p className="mt-4 font-bold">{title}</p>
+      <section className="mx-auto max-w-7xl px-5 py-16 md:px-8">
+        <SectionHeading kicker="PROCESS" title="상담에서 실행까지." />
+        <div className="mt-10 grid gap-4 md:grid-cols-4">
+          {PROCESS.map((p, i) => {
+            const { Icon, anim } = PROCESS_ICONS[i];
+            return (
+              <div key={p.step} className="card relative overflow-hidden p-5">
+                <span className="display absolute -right-1 -top-3 text-7xl text-accent/15">{p.step}</span>
+                <span className="icon-wrap">
+                  <Icon className={`h-6 w-6 ${anim}`} strokeWidth={2.2} />
+                </span>
+                <p className="mt-4 text-xs font-extrabold text-accent">{p.step}</p>
+                <h3 className="mt-1 text-xl font-black">{p.title}</h3>
+                <p className="mt-2 text-sm text-mute">{p.body}</p>
+              </div>
+            );
+          })}
+        </div>
+      </section>
+
+      <section className="cta-band text-white">
+        <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-6 px-5 py-16 md:flex-row md:items-center md:px-8">
+          <div>
+            <p className="text-sm font-extrabold text-white/80">합법적으로, 직접 실행합니다</p>
+            <h2 className="mt-2 text-3xl font-black md:text-5xl">업종과 키워드를 알려주세요.</h2>
+          </div>
+          <KakaoButton>카카오톡 문의하기</KakaoButton>
+        </div>
+      </section>
     </div>
   );
 }

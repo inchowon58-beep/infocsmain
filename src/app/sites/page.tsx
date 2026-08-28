@@ -18,12 +18,13 @@ export default async function SitesPage({
 
   return (
     <div>
-      <section className="border-b border-line">
+      <section className="stage-dark">
         <div className="mx-auto max-w-7xl px-5 py-16 md:px-8">
-          <p className="display text-accent">FOR RENT</p>
-          <h1 className="mt-3 text-4xl font-black md:text-6xl">임대 가능한 사이트</h1>
-          <p className="mt-4 max-w-2xl text-paper-dim">
-            업종별로 셋팅된 사이트를 월 임대로 운영할 수 있습니다. 미리보기와 가격을 보고 바로 문의하세요.
+          <p className="display text-[0.95rem] tracking-[0.18em] text-hot">FOR RENT</p>
+          <h1 className="mt-3 text-4xl font-black md:text-6xl">네이버에서 검색되면 뜨는 사이트</h1>
+          <p className="mt-4 max-w-2xl text-white/70">
+            단순 홈페이지가 아닙니다. 상위노출 프로그램을 이식하고 한 달에 1,000개 글을 웹문서로 올리는 실행형
+            사이트입니다. 미리보기와 임대·셋팅비를 보고 문의하세요.
           </p>
         </div>
       </section>

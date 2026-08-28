@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export function SitesFilter({ industries, current }: { industries: string[]; current?: string }) {
   const chip = (active: boolean) =>
-    `px-3 py-1.5 text-sm font-bold border ${active ? "border-accent bg-accent text-white" : "border-line text-paper-dim hover:border-paper"}`;
+    `px-3 py-1.5 text-sm font-bold rounded-full border ${active ? "border-accent bg-accent text-white" : "border-line bg-white text-paper-dim hover:border-accent"}`;
 
   return (
     <div className="flex flex-wrap gap-2">

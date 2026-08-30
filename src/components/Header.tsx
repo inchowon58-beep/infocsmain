@@ -39,7 +39,7 @@ export function Header() {
               </Link>
             );
           })}
-          <KakaoButton className="py-2.5 text-sm">카카오톡 문의</KakaoButton>
+          <KakaoButton className="py-2.5 text-sm">카톡 상담</KakaoButton>
         </nav>
 
         <button
@@ -65,7 +65,7 @@ export function Header() {
                 {item.label}
               </Link>
             ))}
-            <KakaoButton className="mt-2">카카오톡 문의</KakaoButton>
+            <KakaoButton className="mt-2">카톡 상담</KakaoButton>
           </nav>
         </div>
       ) : null}

@@ -15,7 +15,7 @@ export default function PricingPage() {
           <h1 className="mt-3 text-4xl font-black md:text-6xl">실행사는 마진을 붙이지 않습니다.</h1>
           <p className="mt-4 max-w-2xl text-white/70">
             광고 대행이 아닙니다. 우리가 직접 개발하고 실행하니 최저 금액으로 효과를 보게 만듭니다. 셋팅 50만, 월
-            1,000개 글 발행은 대행 기준 480만이 아니라 30만입니다.
+            글 1,000개 발행(1,000개 키워드)은 대행 기준 480만이 아니라 30만입니다.
           </p>
         </div>
       </section>
@@ -43,7 +43,8 @@ export default function PricingPage() {
               <tr className="border-t border-line">
                 <td className="px-5 py-4 font-black">월 발행</td>
                 <td className="px-5 py-4 text-paper-dim">
-                  웹문서 {PRICING.rankingKeywords.toLocaleString()}개 발행 · 자체 실행
+                  월 글 {PRICING.rankingKeywords.toLocaleString()}개 발행 ({PRICING.rankingKeywords.toLocaleString()}개
+                  키워드) · 자체 실행
                 </td>
                 <td className="px-5 py-4 font-black">
                   <span className="mr-2 text-mute line-through decoration-red-500 decoration-[3px]">

@@ -14,7 +14,7 @@ export function KakaoIcon({ className = "h-5 w-5" }: { className?: string }) {
 
 export function KakaoButton({
   className = "",
-  children = "카카오톡 문의하기",
+  children = "카톡 상담",
 }: {
   className?: string;
   children?: ReactNode;

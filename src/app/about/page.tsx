@@ -8,28 +8,18 @@ export default function AboutPage() {
   return (
     <div>
       <section className="stage-dark">
-        <div className="mx-auto grid max-w-7xl items-center gap-10 px-5 py-14 md:grid-cols-[0.9fr_1.1fr] md:px-8 md:py-20">
-          <div className="overflow-hidden rounded-3xl border border-white/10 bg-white shadow-[0_20px_60px_rgba(0,0,0,0.35)]">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={COMPANY.ceoImage}
-              alt={`${COMPANY.ceo} 대표`}
-              className="mx-auto h-auto w-full max-w-md object-contain object-bottom"
-            />
-          </div>
-          <div>
-            <p className="display text-[0.95rem] tracking-[0.18em] text-hot">CEO</p>
-            <h1 className="mt-2 text-4xl font-black md:text-6xl">{COMPANY.ceo}</h1>
-            <p className="mt-2 text-lg font-bold text-accent">
-              {COMPANY.legal} 대표 · 국내 유일 웹문서 상위노출 실행사
-            </p>
-            <p className="mt-5 text-base leading-relaxed text-white/70">
-              광고 대행사가 아닙니다. 2017년부터 웹문서 상위노출을 직접 실행해 온 {COMPANY.name} 대표입니다. 네이버에서
-              검색하면 뜨는 사이트를 만들고, 한 달에 1,000개 글을 웹문서로 올립니다. 고객은 최저 금액으로 효과를 보게
-              만드는 것이 일입니다.
-            </p>
-            <KakaoButton className="mt-6">카카오톡 문의하기</KakaoButton>
-          </div>
+        <div className="mx-auto max-w-7xl px-5 py-14 md:px-8 md:py-20">
+          <p className="display text-[0.95rem] tracking-[0.18em] text-hot">CEO</p>
+          <h1 className="mt-2 text-4xl font-black md:text-6xl">{COMPANY.ceo}</h1>
+          <p className="mt-3 text-lg font-bold text-accent">
+            {COMPANY.legal} 대표 · 한국애견연맹 반려문화증진위원회 위원장
+          </p>
+          <p className="mt-5 max-w-2xl text-base leading-relaxed text-white/70">
+            광고 대행사가 아닙니다. 2017년부터 웹문서 상위노출을 직접 실행해 온 {COMPANY.name} 대표입니다. 네이버에서
+            검색하면 뜨는 사이트를 만들고, 한 달에 1,000개 글을 웹문서로 올립니다. 고객은 최저 금액으로 효과를 보게
+            만드는 것이 일입니다.
+          </p>
+          <KakaoButton className="mt-6">카톡 상담</KakaoButton>
         </div>
       </section>
 
@@ -62,6 +52,10 @@ export default function AboutPage() {
               <div>
                 <dt className="text-mute">대표</dt>
                 <dd className="font-bold">{COMPANY.ceo}</dd>
+              </div>
+              <div>
+                <dt className="text-mute">사업자등록번호</dt>
+                <dd className="font-bold">{COMPANY.bizNo}</dd>
               </div>
               <div>
                 <dt className="text-mute">주소</dt>

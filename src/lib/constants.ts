@@ -7,6 +7,7 @@ export const COMPANY = {
   years: "2017 – 2026",
   domain: "www.infocs.co.kr",
   founded: 2017,
+  bizNo: "224-87-00683",
   kakao: "https://open.kakao.com/o/sxelLqJi",
   ceoImage: "/images/ceo.png",
 } as const;

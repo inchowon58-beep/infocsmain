@@ -29,7 +29,9 @@ export default function RankingPage() {
           <p className="mt-3 text-xs font-extrabold text-mute">광고 대행사라면</p>
           <p className="price-was price-was-light">{formatMan(PRICING.rankingMonthlyCompare)}</p>
           <p className="mt-1 text-5xl font-black text-accent">{formatMan(PRICING.rankingMonthly)}</p>
-          <p className="mt-2 font-bold">월 발행 · 글 {PRICING.rankingKeywords.toLocaleString()}개</p>
+          <p className="mt-2 font-bold">
+            월 글 {PRICING.rankingKeywords.toLocaleString()}개 발행 ({PRICING.rankingKeywords.toLocaleString()}개 키워드)
+          </p>
           <p className="mt-3 text-sm text-mute">
             자체 컴퓨터 300대로 발행을 돌립니다. 키워드 하나에 트래픽을 쏟는 방식이 아닙니다. 광고 대행이 아니라 직접
             개발하고 실행하니까 이 가격입니다.

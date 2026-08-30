@@ -10,7 +10,7 @@ export function Footer() {
   if (pathname.startsWith("/admin")) return null;
 
   return (
-    <footer className="border-t border-white/10 bg-stage pb-20 text-white">
+    <footer className="border-t border-white/10 bg-stage pb-10 text-white">
       <div className="mx-auto grid max-w-7xl gap-10 px-5 py-14 md:grid-cols-3 md:px-8">
         <div>
           <div className="flex items-center gap-2">
@@ -23,7 +23,7 @@ export function Footer() {
           <p className="mt-4 max-w-sm text-sm leading-relaxed text-white/55">
             국내 유일 네이버 웹문서 상위노출 실행사. 광고 대행사가 아닙니다. 직접 실행합니다.
           </p>
-          <KakaoButton className="mt-5">카카오톡 문의하기</KakaoButton>
+          <KakaoButton className="mt-5">카톡 상담</KakaoButton>
         </div>
         <div>
           <p className="text-xs font-extrabold tracking-[0.16em] text-hot">메뉴</p>
@@ -41,6 +41,7 @@ export function Footer() {
           <p className="text-xs font-extrabold tracking-[0.16em] text-hot">회사 정보</p>
           <p className="mt-3 font-bold text-white">{COMPANY.legal}</p>
           <p>대표 {COMPANY.ceo}</p>
+          <p>사업자등록번호 {COMPANY.bizNo}</p>
           <p>{COMPANY.address}</p>
           <p>{COMPANY.years}</p>
           <p>{COMPANY.domain}</p>

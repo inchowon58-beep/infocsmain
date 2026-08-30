@@ -5,7 +5,11 @@ import { SectionHeading } from "@/components/SectionHeading";
 import { KakaoButton } from "@/components/KakaoButton";
 import { ServiceCard } from "@/components/ServiceCard";
 import { WhyInfocs } from "@/components/WhyInfocs";
+import { SearchEra } from "@/components/SearchEra";
 import { MonthlyPrice } from "@/components/MonthlyPrice";
+import { CompanyTrust } from "@/components/CompanyTrust";
+import { SearchProof } from "@/components/SearchProof";
+import { TrustNotes } from "@/components/TrustNotes";
 import { COMPANY, MANAGED_INDUSTRIES, PROCESS, SERVICES } from "@/lib/constants";
 import { getPublicSites } from "@/lib/store";
 
@@ -43,7 +47,7 @@ export default async function HomePage() {
               이 방식으로 네이버 상위노출을 하는 곳은, 지금 오직 인포씨에스가 유일합니다.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <KakaoButton>카카오톡 문의하기</KakaoButton>
+              <KakaoButton>카톡 상담</KakaoButton>
               <Link href="/sites" className="btn-ghost-dark">
                 임대 사이트 보기
               </Link>
@@ -53,9 +57,50 @@ export default async function HomePage() {
         </div>
       </section>
 
+      <SearchEra />
+
       <section className="mx-auto max-w-7xl px-5 py-16 md:px-8 md:py-20">
         <WhyInfocs />
       </section>
+
+      <SearchProof sites={sites} />
+
+      <section className="mx-auto max-w-7xl px-5 py-16 md:px-8">
+        <div className="flex flex-wrap items-end justify-between gap-6">
+          <SectionHeading
+            kicker="RENTAL SITES"
+            title="지금 돌아가고 있는 사이트"
+            body="말로만 상위노출이라고 하지 않습니다. 미리보기와 실제 주소를 열고 확인하세요."
+          />
+          <Link href="/sites" className="btn-ghost">
+            전체 보기
+          </Link>
+        </div>
+        <div className="mt-8 flex flex-wrap gap-2">
+          {MANAGED_INDUSTRIES.map((item) => (
+            <span
+              key={item}
+              className="rounded-full border border-line bg-white px-3.5 py-1.5 text-sm font-bold shadow-sm"
+            >
+              {item}
+            </span>
+          ))}
+          <span className="rounded-full bg-accent px-3.5 py-1.5 text-sm font-extrabold text-white">외 다수</span>
+        </div>
+        <div className="mt-10">
+          {sites.length === 0 ? (
+            <EmptySites />
+          ) : (
+            <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+              {sites.slice(0, 6).map((site) => (
+                <SiteCard key={site.id} site={site} />
+              ))}
+            </div>
+          )}
+        </div>
+      </section>
+
+      <TrustNotes />
 
       <section className="bg-ink-2">
         <div className="mx-auto max-w-7xl px-5 py-16 md:px-8">
@@ -68,51 +113,6 @@ export default async function HomePage() {
             {SERVICES.map((s) => (
               <ServiceCard key={s.slug} service={s} />
             ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="mx-auto max-w-7xl px-5 py-16 md:px-8">
-        <SectionHeading
-          kicker="INDUSTRY"
-          title="지금 임대·관리 중인 업종"
-          body="분양·병원·카페부터 철거·회생까지, 네이버에서 고객이 찾아오는 사이트를 직접 실행하고 있습니다."
-        />
-        <div className="mt-8 flex flex-wrap gap-2">
-          {MANAGED_INDUSTRIES.map((item) => (
-            <span
-              key={item}
-              className="rounded-full border border-line bg-white px-3.5 py-1.5 text-sm font-bold shadow-sm"
-            >
-              {item}
-            </span>
-          ))}
-          <span className="rounded-full bg-accent px-3.5 py-1.5 text-sm font-extrabold text-white">외 다수</span>
-        </div>
-      </section>
-
-      <section className="bg-ink-2">
-        <div className="mx-auto max-w-7xl px-5 py-16 md:px-8">
-          <div className="flex flex-wrap items-end justify-between gap-6">
-            <SectionHeading
-              kicker="RENTAL SITES"
-              title="지금 임대 가능한 사이트"
-              body="상위노출 프로그램이 이식된 업종 사이트입니다. 미리보기와 월 임대·셋팅비를 확인하세요."
-            />
-            <Link href="/sites" className="btn-ghost">
-              전체 보기
-            </Link>
-          </div>
-          <div className="mt-10">
-            {sites.length === 0 ? (
-              <EmptySites />
-            ) : (
-              <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-                {sites.slice(0, 6).map((site) => (
-                  <SiteCard key={site.id} site={site} />
-                ))}
-              </div>
-            )}
           </div>
         </div>
       </section>
@@ -154,13 +154,15 @@ export default async function HomePage() {
         </div>
       </section>
 
+      <CompanyTrust />
+
       <section className="cta-band text-white">
         <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-6 px-5 py-16 md:flex-row md:items-center md:px-8">
           <div>
             <p className="text-sm font-extrabold text-white/80">합법적으로, 직접 실행합니다</p>
             <h2 className="mt-2 text-3xl font-black md:text-5xl">업종과 키워드를 알려주세요.</h2>
           </div>
-          <KakaoButton>카카오톡 문의하기</KakaoButton>
+          <KakaoButton>카톡 상담</KakaoButton>
         </div>
       </section>
     </div>

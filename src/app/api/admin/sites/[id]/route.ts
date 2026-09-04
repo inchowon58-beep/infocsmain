@@ -1,7 +1,10 @@
 import { NextResponse } from "next/server";
 import { unauthorizedIfNotAdmin, badRequest } from "@/lib/api";
 import { parseSitePayload } from "@/lib/site-payload";
+import { captureSitePreview } from "@/lib/screenshot";
 import { deleteSite, getSite, upsertSite } from "@/lib/store";
+
+export const maxDuration = 60;
 
 export async function GET(_req: Request, { params }: { params: Promise<{ id: string }> }) {
   const denied = await unauthorizedIfNotAdmin();
@@ -20,7 +23,11 @@ export async function PUT(req: Request, { params }: { params: Promise<{ id: stri
   if (!existing) return NextResponse.json({ error: "없음" }, { status: 404 });
   const body = await req.json().catch(() => ({}));
   try {
-    const site = await upsertSite(parseSitePayload(body, id));
+    const payload = parseSitePayload(body, id);
+    if (!payload.previewImage) {
+      payload.previewImage = await captureSitePreview(payload.url);
+    }
+    const site = await upsertSite(payload);
     return NextResponse.json(site);
   } catch (err) {
     return badRequest(err instanceof Error ? err.message : "저장에 실패했습니다.");

@@ -108,11 +108,12 @@ export function SiteForm({ site }: Props) {
       </div>
       <div className="grid gap-1 text-sm">
         <span className="font-bold">미리보기 이미지</span>
+        <p className="text-xs text-mute">비워 두고 등록하면 사이트 메인 화면을 자동으로 캡처합니다.</p>
         <input
           value={previewImage}
           onChange={(e) => setPreviewImage(e.target.value)}
           className={field}
-          placeholder="이미지 URL 또는 업로드"
+          placeholder="비워 두면 자동 캡처"
         />
         <input type="file" accept="image/*" onChange={onUpload} className="mt-2 text-sm text-mute" />
         {uploading ? <p className="text-mute">올리는 중…</p> : null}
@@ -141,7 +142,7 @@ export function SiteForm({ site }: Props) {
       </div>
       {error ? <p className="text-sm text-accent">{error}</p> : null}
       <button type="submit" disabled={loading} className="btn-accent w-fit">
-        {loading ? "저장 중…" : site ? "수정 저장" : "등록"}
+        {loading ? (previewImage ? "저장 중…" : "화면 캡처 후 저장 중…") : site ? "수정 저장" : "등록"}
       </button>
     </form>
   );

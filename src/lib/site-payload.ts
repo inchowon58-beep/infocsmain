@@ -1,4 +1,5 @@
 import type { RentalSite, SiteStatus } from "./types";
+import { assertPublicHttpUrl } from "./screenshot";
 
 const STATUSES: SiteStatus[] = ["available", "rented", "hidden"];
 
@@ -14,6 +15,7 @@ export function parseSitePayload(body: Record<string, unknown>, existingId?: str
   if (!/^https?:\/\//i.test(normalizedUrl)) {
     normalizedUrl = `https://${normalizedUrl}`;
   }
+  normalizedUrl = assertPublicHttpUrl(normalizedUrl);
 
   const monthlyRent = Number(body.monthlyRent);
   const setupCost = Number(body.setupCost);

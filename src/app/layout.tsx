@@ -37,6 +37,11 @@ export const metadata: Metadata = {
     "웹문서 실행사",
   ],
   metadataBase: new URL("https://www.infocs.co.kr"),
+  verification: {
+    other: {
+      "naver-site-verification": "2a977aae9d47e50e0124cab07c569a96fa2ca426",
+    },
+  },
   openGraph: {
     title: `${COMPANY.name} | 네이버 99% 상위노출 사이트 제작의 비밀`,
     description: "이 방식으로 네이버 상위노출을 하는 곳은 지금 오직 인포씨에스가 유일합니다.",

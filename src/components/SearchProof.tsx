@@ -21,7 +21,6 @@ export function SearchProof({ sites }: { sites: RentalSite[] }) {
   return (
     <div>
         <p className="text-xs font-extrabold tracking-wide text-accent">SEARCH</p>
-        <h2 className="mt-2 text-2xl font-black tracking-tight md:text-3xl">지금 네이버 상위에 보이는 게 홈페이지입니다.</h2>
         <p className="mt-3 max-w-2xl text-sm text-paper-dim">
           블로그·카페 글이 아닙니다. 홈페이지·랜딩 웹문서를 대량으로 올려 뷰탭에 붙입니다. 사이트를 직접 열어보시면 됩니다.
         </p>

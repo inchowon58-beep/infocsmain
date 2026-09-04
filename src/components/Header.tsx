@@ -22,7 +22,7 @@ export function Header() {
           </span>
           <span>
             <span className="block text-lg font-black leading-none tracking-tight">{COMPANY.name}</span>
-            <span className="text-[11px] font-bold tracking-wide text-mute">국내 유일 실행사</span>
+            <span className="text-[11px] font-bold tracking-wide text-mute">제작 · 웹문서 실행</span>
           </span>
         </Link>
 

@@ -75,8 +75,33 @@ export const MANAGED_INDUSTRIES = [
   "애견카페",
 ] as const;
 
+export const NAVER_REPORTS = [
+  {
+    src: "/images/naver-report-1.jpg",
+    exposure: "81.0만",
+    clicks: "1.0만",
+    exposureUp: "18,954%",
+    clicksUp: "15,202%",
+  },
+  {
+    src: "/images/naver-report-2.jpg",
+    exposure: "48.4만",
+    clicks: "9.1천",
+    exposureUp: "677%",
+    clicksUp: "493%",
+  },
+  {
+    src: "/images/naver-report-3.jpg",
+    exposure: "42.1만",
+    clicks: "8.3천",
+    exposureUp: "483%",
+    clicksUp: "297%",
+  },
+] as const;
+
 export const NAV = [
   { href: "/services", label: "서비스" },
+  { href: "/results", label: "레퍼런스" },
   { href: "/sites", label: "임대사이트" },
   { href: "/pricing", label: "요금" },
   { href: "/about", label: "회사소개" },

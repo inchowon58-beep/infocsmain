@@ -1,10 +1,19 @@
 import { promises as fs } from "fs";
 import path from "path";
-import { list, put } from "@vercel/blob";
+import { get, put } from "@vercel/blob";
 
 const REDIS_URL = process.env.UPSTASH_REDIS_REST_URL;
 const REDIS_TOKEN = process.env.UPSTASH_REDIS_REST_TOKEN;
 const BLOB_TOKEN = process.env.BLOB_READ_WRITE_TOKEN;
+const BLOB_ACCESS = process.env.BLOB_ACCESS === "public" ? "public" : "private";
+
+function hasBlob() {
+  return Boolean(BLOB_TOKEN || process.env.BLOB_STORE_ID);
+}
+
+function blobAuth() {
+  return BLOB_TOKEN ? { token: BLOB_TOKEN } : {};
+}
 
 function isServerless() {
   return Boolean(
@@ -48,26 +57,29 @@ async function redisCommand(command: unknown[]): Promise<unknown> {
   return body.result ?? null;
 }
 
+async function streamToText(stream: ReadableStream<Uint8Array>) {
+  return new Response(stream).text();
+}
+
 async function readBlobJson<T>(name: string): Promise<T | null> {
-  if (!BLOB_TOKEN) return null;
-  const { blobs } = await list({ prefix: blobPath(name), token: BLOB_TOKEN, limit: 20 });
-  const hit = blobs.find((b) => b.pathname === blobPath(name)) ?? blobs[0];
-  if (!hit) return null;
-  const res = await fetch(hit.url, { cache: "no-store" });
-  if (!res.ok) return null;
-  return (await res.json()) as T;
+  if (!hasBlob()) return null;
+  const fetched = await get(blobPath(name), {
+    access: BLOB_ACCESS,
+    useCache: false,
+    ...blobAuth(),
+  });
+  if (!fetched?.stream) return null;
+  return JSON.parse(await streamToText(fetched.stream)) as T;
 }
 
 async function writeBlobJson(name: string, value: unknown) {
-  if (!BLOB_TOKEN) return false;
   await put(blobPath(name), JSON.stringify(value), {
-    access: "public",
+    access: BLOB_ACCESS,
     addRandomSuffix: false,
     allowOverwrite: true,
     contentType: "application/json",
-    token: BLOB_TOKEN,
+    ...blobAuth(),
   });
-  return true;
 }
 
 async function readDiskJson<T>(name: string, fallback: T): Promise<T> {
@@ -90,13 +102,9 @@ async function writeDiskJson(name: string, value: unknown) {
 }
 
 export async function loadJson<T>(name: string, fallback: T): Promise<T> {
-  if (BLOB_TOKEN) {
-    try {
-      const fromBlob = await readBlobJson<T>(name);
-      if (fromBlob != null) return fromBlob;
-    } catch {
-      // Blob 미연결 시 디스크/임시폴더로 진행
-    }
+  if (hasBlob()) {
+    const fromBlob = await readBlobJson<T>(name);
+    if (fromBlob != null) return fromBlob;
   }
   if (REDIS_URL && REDIS_TOKEN) {
     try {
@@ -110,21 +118,13 @@ export async function loadJson<T>(name: string, fallback: T): Promise<T> {
 }
 
 export async function saveJson(name: string, value: unknown) {
-  if (BLOB_TOKEN) {
-    try {
-      await writeBlobJson(name, value);
-      return;
-    } catch {
-      // 아래로 폴백
-    }
+  if (hasBlob()) {
+    await writeBlobJson(name, value);
+    return;
   }
   if (REDIS_URL && REDIS_TOKEN) {
-    try {
-      await redisCommand(["SET", redisKey(name), JSON.stringify(value)]);
-      return;
-    } catch {
-      // 아래로 폴백
-    }
+    await redisCommand(["SET", redisKey(name), JSON.stringify(value)]);
+    return;
   }
   try {
     await writeDiskJson(name, value);
@@ -140,14 +140,16 @@ export async function saveJson(name: string, value: unknown) {
 }
 
 export async function saveUpload(filename: string, buf: Buffer, contentType: string): Promise<string> {
-  if (BLOB_TOKEN) {
-    const blob = await put(`infocs/uploads/${filename}`, buf, {
-      access: "public",
+  if (hasBlob()) {
+    const pathname = `infocs/uploads/${filename}`;
+    const blob = await put(pathname, buf, {
+      access: BLOB_ACCESS,
       addRandomSuffix: false,
+      allowOverwrite: true,
       contentType,
-      token: BLOB_TOKEN,
+      ...blobAuth(),
     });
-    return blob.url;
+    return BLOB_ACCESS === "public" ? blob.url : `/api/files/${filename}`;
   }
   if (isServerless()) {
     if (buf.length > 700_000) {
@@ -159,4 +161,18 @@ export async function saveUpload(filename: string, buf: Buffer, contentType: str
   await fs.mkdir(dir, { recursive: true });
   await fs.writeFile(path.join(dir, filename), buf);
   return `/uploads/${filename}`;
+}
+
+export async function readUpload(filename: string) {
+  if (!hasBlob()) return null;
+  const fetched = await get(`infocs/uploads/${filename}`, {
+    access: BLOB_ACCESS,
+    useCache: true,
+    ...blobAuth(),
+  });
+  if (!fetched?.stream) return null;
+  return {
+    stream: fetched.stream,
+    contentType: fetched.blob.contentType || "application/octet-stream",
+  };
 }

@@ -1,23 +1,9 @@
+import { NowOnNaver } from "@/components/NowOnNaver";
+
 export function SearchEra() {
   return (
     <div>
-      <section className="stage-dark">
-        <div className="mx-auto max-w-7xl px-5 py-16 md:px-8 md:py-20">
-          <p className="text-xs font-extrabold tracking-wide text-hot">THE ERA IS OVER</p>
-          <h2 className="mt-3 max-w-4xl text-[1.85rem] font-black leading-tight md:text-5xl">
-            블로그 몇 개로 1등하던 그 시절,
-            <br />
-            <span className="text-accent">이제 끝났습니다.</span>
-          </h2>
-          <p className="mt-6 max-w-2xl text-lg font-bold text-white">
-            지금 네이버 검색 메인 화면은 사이트 웹문서의 시대입니다.
-          </p>
-          <p className="mt-4 max-w-2xl text-base leading-relaxed text-white/65">
-            네이버 블로그·카페 광고, 바이럴은 예전처럼 검색 메인에서 잘 보이지 않습니다. 검색엔진은 이미 바뀌었습니다.
-            광고 방식만 그대로면 계속 뒤처집니다.
-          </p>
-        </div>
-      </section>
+      <NowOnNaver />
 
       <section className="mx-auto max-w-7xl px-5 py-16 md:px-8">
         <div className="grid gap-5 md:grid-cols-3">
@@ -25,7 +11,7 @@ export function SearchEra() {
             [
               "01",
               "검색엔진은 이미 변했습니다",
-              "지금은 검색 메인에서 웹문서가 먼저 보입니다. 예전에 먹히던 블로그 상위노출 감각으로는 따라가지 못합니다.",
+              "지금 네이버 상위에 홈페이지·랜딩페이지가 많이 보입니다. 예전에 먹히던 블로그 상위노출 감각으로는 따라가지 못합니다.",
             ],
             [
               "02",

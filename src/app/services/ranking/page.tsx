@@ -11,8 +11,8 @@ export default function RankingPage() {
     <ServiceLayout
       slug="ranking"
       en="AUTO RANK SYSTEM"
-      title="네이버에서 검색하면 상위노출됩니다"
-      lead="사이트에 프로그램을 이식하고 한 달에 1,000개 글을 웹문서로 발행합니다. 블로그·카페처럼 아이디가 죽어 글이 사라지지 않습니다."
+      title="홈페이지·랜딩을 네이버 상위에 대량으로 올립니다"
+      lead="지금 네이버에 홈페이지나 랜딩페이지가 상위에 뜨는 거, 많이 보이시죠? 그 웹문서를 한 달에 1,000개 발행합니다. 블로그·카페처럼 아이디가 죽어 글이 사라지지 않습니다."
     >
       <WhyInfocs />
       <div className="mt-14 grid gap-4 md:grid-cols-2">

@@ -8,6 +8,10 @@ export function WhyInfocs() {
         <h2 className="mt-2 text-2xl font-black md:text-4xl">도대체 무엇을 하는 곳인가.</h2>
         <div className="mt-5 max-w-3xl space-y-4 text-base leading-relaxed text-paper-dim">
           <p>
+            지금 네이버에 홈페이지나 랜딩페이지가 상위에 뜨는 거, 많이 보이시죠? 그 자리를{" "}
+            <strong className="text-paper">대량으로 올리는</strong> 실행이 인포씨에스입니다.
+          </p>
+          <p>
             인포씨에스는 <strong className="text-paper">광고 대행사가 아닙니다.</strong> 광고를 받아서 다른 곳에 넘기는
             곳이 아니라, 우리가 직접 실행하는 <strong className="text-accent">국내 유일 웹문서 상위노출 실행사</strong>
             입니다. 고객은 최저 금액으로 효과를 보게 만드는 것이 일입니다.

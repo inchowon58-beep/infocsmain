@@ -9,11 +9,11 @@ export default function ServicesPage() {
     <div>
       <section className="stage-dark">
         <div className="mx-auto max-w-7xl px-5 py-16 md:px-8">
-          <p className="text-xs font-extrabold tracking-[0.18em] text-hot">국내 유일 실행사</p>
-          <h1 className="mt-3 text-3xl font-black md:text-6xl">광고 대행사가 아닙니다. 직접 실행합니다.</h1>
+          <p className="text-xs font-extrabold tracking-[0.18em] text-hot">지금 네이버를 열어보세요</p>
+          <h1 className="mt-3 text-3xl font-black md:text-6xl">홈페이지·랜딩이 상위에 뜹니다. 그걸 대량으로 올립니다.</h1>
           <p className="mt-4 max-w-2xl text-white/70">
-            사이트에 상위노출 프로그램을 이식하고, 한 달에 1,000개 글을 웹문서로 올립니다. 네이버에서 검색하면 뜨게
-            만드는 곳이 인포씨에스입니다. 이 방식으로 하는 곳은 지금 오직 인포씨에스가 유일합니다.
+            지금 네이버에 홈페이지나 랜딩페이지가 상위에 뜨는 거, 많이 보이시죠? 그 웹문서를 한 달에 1,000개 올리는
+            실행이 인포씨에스입니다. 광고 대행사가 아닙니다. 직접 실행합니다.
           </p>
         </div>
       </section>

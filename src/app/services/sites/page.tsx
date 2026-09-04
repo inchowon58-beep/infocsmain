@@ -10,7 +10,7 @@ export default function RankSitePage() {
       slug="sites"
       en="99% RANK SITE"
       title="네이버 99% 상위노출 사이트 제작의 비밀"
-      lead="단순 사이트 제작이 아닙니다. 네이버에서 검색하면 뜨도록 프로그램을 이식한 사이트를 만듭니다. 예쁘기만 한 홈페이지는 만들지 않습니다."
+      lead="지금 네이버에 홈페이지·랜딩페이지가 상위에 뜨는 거, 많이 보이시죠? 그 사이트를 만들고 웹문서를 대량으로 올립니다. 예쁘기만 한 홈페이지는 만들지 않습니다."
     >
       <div className="max-w-3xl space-y-4 text-base leading-relaxed text-paper-dim">
         <p>

@@ -19,15 +19,13 @@ export function SearchProof({ sites }: { sites: RentalSite[] }) {
       : FALLBACK;
 
   return (
-    <section className="bg-ink-2">
-      <div className="mx-auto max-w-7xl px-5 py-16 md:px-8">
+    <div>
         <p className="text-xs font-extrabold tracking-wide text-accent">SEARCH</p>
-        <h2 className="mt-2 text-3xl font-black tracking-tight md:text-5xl">고객이 검색하면, 사이트가 뜹니다.</h2>
-        <p className="mt-4 max-w-2xl text-paper-dim">
-          블로그·카페 글이 아닙니다. 네이버 뷰탭에 웹문서로 붙습니다. 아래는 지금 실행 중인 업종입니다. 사이트를 직접
-          열어보시면 됩니다.
+        <h2 className="mt-2 text-2xl font-black tracking-tight md:text-3xl">지금 네이버 상위에 보이는 게 홈페이지입니다.</h2>
+        <p className="mt-3 max-w-2xl text-sm text-paper-dim">
+          블로그·카페 글이 아닙니다. 홈페이지·랜딩 웹문서를 대량으로 올려 뷰탭에 붙입니다. 사이트를 직접 열어보시면 됩니다.
         </p>
-        <div className="mt-10 grid gap-5 md:grid-cols-3">
+        <div className="mt-8 grid gap-5 md:grid-cols-3">
           {examples.map((item) => (
             <article key={`${item.query}-${item.host}`} className="overflow-hidden rounded-2xl border border-line bg-white shadow-sm">
               <div className="border-b border-line bg-[#f5f6f5] px-4 py-3">
@@ -53,7 +51,6 @@ export function SearchProof({ sites }: { sites: RentalSite[] }) {
             </article>
           ))}
         </div>
-      </div>
-    </section>
+    </div>
   );
 }

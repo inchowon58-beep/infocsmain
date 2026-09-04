@@ -184,6 +184,16 @@ export default async function HomePage() {
               전체 보기
             </Link>
           </div>
+          <div className="mt-6 max-w-3xl rounded-2xl border-2 border-accent bg-[#e8f9ee] px-5 py-4 md:px-6 md:py-5">
+            <p className="inline-flex items-center gap-2 rounded-full bg-accent px-3 py-1 text-xs font-extrabold text-white">
+              <span className="h-2 w-2 animate-pulse rounded-full bg-white" />
+              지금 작업 진행 중
+            </p>
+            <p className="mt-3 text-base font-extrabold leading-relaxed text-paper md:text-xl">
+              아래 사이트들은 제작과 프로그램 이식을 이미 마친 상태입니다.
+              <span className="text-accent"> 네이버 노출이 시작됐고, 지금 상위노출 작업이 계속 진행 중입니다.</span>
+            </p>
+          </div>
           <div className="mt-8 flex flex-wrap gap-2">
             {MANAGED_INDUSTRIES.map((item) => (
               <span key={item} className="rounded-full border border-line bg-white px-3.5 py-1.5 text-sm font-bold">

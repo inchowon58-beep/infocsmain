@@ -23,9 +23,18 @@ export default async function SitesPage({
           <p className="display text-[0.95rem] tracking-[0.18em] text-hot">FOR RENT</p>
           <h1 className="mt-3 text-4xl font-black md:text-6xl">네이버에서 검색되면 뜨는 사이트</h1>
           <p className="mt-4 max-w-2xl text-white/70">
-            단순 홈페이지가 아닙니다. 상위노출 프로그램을 이식하고 한 달에 1,000개 글을 웹문서로 올리는 실행형
-            사이트입니다. 미리보기와 임대·셋팅비를 보고 문의하세요.
+            미리보기와 임대·셋팅비를 보고 문의하세요.
           </p>
+          <div className="mt-6 max-w-3xl rounded-2xl border-2 border-accent bg-accent/15 px-5 py-4 md:px-6">
+            <p className="inline-flex items-center gap-2 rounded-full bg-accent px-3 py-1 text-xs font-extrabold text-white">
+              <span className="h-2 w-2 animate-pulse rounded-full bg-white" />
+              지금 작업 진행 중
+            </p>
+            <p className="mt-3 text-base font-extrabold leading-relaxed text-white md:text-xl">
+              아래 사이트들은 제작과 프로그램 이식을 이미 마친 상태입니다.
+              <span className="text-hot"> 네이버 노출이 시작됐고, 지금 상위노출 작업이 계속 진행 중입니다.</span>
+            </p>
+          </div>
         </div>
       </section>
       <section className="mx-auto max-w-7xl px-5 py-12 md:px-8">

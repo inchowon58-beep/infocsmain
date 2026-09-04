@@ -112,34 +112,36 @@ export function SeoDocView({ page, doc }: { page: SeoPageRef; doc: SeoDoc }) {
               })}
             </div>
           )}
-          <div className={`mt-8 grid gap-5 ${doc.tables.length > 1 ? "lg:grid-cols-2" : ""}`}>
+          <div className="mt-8 space-y-3">
             {doc.tables.map((table) => (
-              <figure key={table.caption} className="overflow-x-auto rounded-[1.4rem] border border-line bg-white shadow-[0_10px_28px_rgba(17,24,20,0.05)]">
-                <figcaption className="border-b border-line px-5 py-3 text-sm font-extrabold">{table.caption}</figcaption>
-                <table className="w-full min-w-[28rem] text-left text-sm">
-                  <thead>
-                    <tr className="border-b border-line text-mute">
-                      {table.headers.map((h) => (
-                        <th key={h} className="px-5 py-2.5 font-bold">
-                          {h}
-                        </th>
-                      ))}
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {table.rows.map((row) => (
-                      <tr key={row.join("-")} className="border-b border-line last:border-0">
-                        {row.map((cell, i) => (
-                          <td key={`${cell}-${i}`} className={`px-5 py-2.5 ${i === 0 ? "font-bold" : "text-paper-dim"}`}>
-                            {cell}
-                          </td>
+              <details key={table.caption} className="rounded-2xl border border-line bg-white px-5 py-4">
+                <summary className="cursor-pointer font-extrabold">{table.caption}</summary>
+                <div className="mt-4 overflow-x-auto">
+                  <table className="w-full min-w-[28rem] text-left text-sm">
+                    <thead>
+                      <tr className="border-b border-line text-mute">
+                        {table.headers.map((h) => (
+                          <th key={h} className="px-2 py-2.5 font-bold first:pl-0 last:pr-0">
+                            {h}
+                          </th>
                         ))}
                       </tr>
-                    ))}
-                  </tbody>
-                </table>
-                <p className="px-5 py-3 text-xs leading-relaxed text-mute">{table.source}</p>
-              </figure>
+                    </thead>
+                    <tbody>
+                      {table.rows.map((row) => (
+                        <tr key={row.join("-")} className="border-b border-line last:border-0">
+                          {row.map((cell, i) => (
+                            <td key={`${cell}-${i}`} className={`px-2 py-2.5 first:pl-0 last:pr-0 ${i === 0 ? "font-bold" : "text-paper-dim"}`}>
+                              {cell}
+                            </td>
+                          ))}
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                  <p className="mt-3 text-xs leading-relaxed text-mute">{table.source}</p>
+                </div>
+              </details>
             ))}
           </div>
         </div>

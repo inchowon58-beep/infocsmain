@@ -9,7 +9,20 @@ ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 CATALOG = os.path.join(ROOT, "src", "lib", "seo-catalog.ts")
 REGIONS = os.path.join(ROOT, "src", "lib", "korea-regions.ts")
 OUT = os.path.join(ROOT, "naver-webdoc-urls.txt")
+DESKTOP = os.path.join(os.path.expanduser("~"), "Desktop", "인포씨에스-네이버웹문서등록-URL.txt")
 ORIGIN = "https://www.infocs.co.kr"
+
+CORE = [
+    f"{ORIGIN}/",
+    f"{ORIGIN}/services",
+    f"{ORIGIN}/services/ranking",
+    f"{ORIGIN}/services/sites",
+    f"{ORIGIN}/results",
+    f"{ORIGIN}/sites",
+    f"{ORIGIN}/pricing",
+    f"{ORIGIN}/about",
+    f"{ORIGIN}/kw",
+]
 
 INTENT_FIRST = [
     "홈페이지제작",
@@ -167,16 +180,18 @@ def main() -> None:
 
     rows.sort()
     seen_slug: set[str] = set()
-    lines = [f"{ORIGIN}/kw"]
+    lines = list(CORE)
     for *_, slug in rows:
         if slug in seen_slug:
             continue
         seen_slug.add(slug)
         lines.append(url(slug))
 
-    with open(OUT, "w", encoding="utf-8", newline="\n") as fh:
-        fh.write("\n".join(lines) + "\n")
-    print("wrote", OUT, "count", len(lines))
+    text = "\n".join(lines) + "\n"
+    for dest in (OUT, DESKTOP):
+        with open(dest, "w", encoding="utf-8", newline="\n") as fh:
+            fh.write(text)
+        print("wrote", dest, "count", len(lines))
 
 
 if __name__ == "__main__":

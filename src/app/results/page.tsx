@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { KakaoButton } from "@/components/KakaoButton";
 import { NaverReports } from "@/components/NaverReports";
 import { SearchAsset } from "@/components/SearchAsset";
+import { PRICE_LINE } from "@/lib/constants";
 
 export const metadata: Metadata = { title: "실측 레퍼런스" };
 
@@ -41,7 +42,7 @@ export default function ResultsPage() {
             <h3 className="mt-3 text-2xl font-black">매달 쓰던 광고비를, 사이트 실행으로 바꿉니다</h3>
             <p className="mt-4 text-sm leading-relaxed text-mute">
               키워드 하나 수십만 원짜리 광고를 끊으면 노출이 같이 끊깁니다. 위 실측처럼 웹문서는 사이트에 남아 검색
-              유입이 계속 쌓입니다. 셋팅 50만 · 월 30만입니다.
+              유입이 계속 쌓입니다. {PRICE_LINE}입니다.
             </p>
           </article>
         </div>

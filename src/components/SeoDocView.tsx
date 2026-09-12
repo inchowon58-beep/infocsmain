@@ -17,7 +17,7 @@ import { MonthlyPrice } from "@/components/MonthlyPrice";
 import { NaverReports } from "@/components/NaverReports";
 import { SearchAsset } from "@/components/SearchAsset";
 import { SectionLabel } from "@/components/SectionLabel";
-import { COMPANY, COMPARE, PROCESS, STRENGTHS } from "@/lib/constants";
+import { COMPANY, COMPARE, PRICE_LINE, PROCESS, STRENGTHS } from "@/lib/constants";
 import { relatedSeoLinks, seoPath, type SeoPageRef } from "@/lib/seo-catalog";
 import type { SeoDoc } from "@/lib/seo-content";
 
@@ -64,7 +64,7 @@ export function SeoDocView({ page, doc }: { page: SeoPageRef; doc: SeoDoc }) {
               {[
                 { Icon: Search, text: page.industry.label },
                 { Icon: MapPin, text: page.place?.label || "전국" },
-                { Icon: Building2, text: "셋팅 50만 · 월 30만" },
+                { Icon: Building2, text: PRICE_LINE },
               ].map((item) => (
                 <span
                   key={item.text}
@@ -294,7 +294,7 @@ export function SeoDocView({ page, doc }: { page: SeoPageRef; doc: SeoDoc }) {
           <div>
             <p className="text-sm font-extrabold text-white/80">{page.keyword}</p>
             <h2 className="mt-2 text-3xl font-black md:text-5xl">업종과 지역을 알려주세요.</h2>
-            <p className="mt-3 text-sm text-white/70">셋팅 50만 · 월 30만. 2017년부터 직접 실행합니다.</p>
+            <p className="mt-3 text-sm text-white/70">{PRICE_LINE}. 2017년부터 직접 실행합니다.</p>
           </div>
           <KakaoButton>카톡 상담</KakaoButton>
         </div>

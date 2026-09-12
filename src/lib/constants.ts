@@ -2,22 +2,22 @@ export const COMPANY = {
   name: "인포씨에스",
   nameEn: "INFOCS",
   legal: "주식회사 인포씨에스",
-  ceo: "조춘원",
   address: "경기 부천시 길주로 246",
   years: "2017 – 2026",
   domain: "www.infocs.co.kr",
   founded: 2017,
   bizNo: "224-87-00683",
   kakao: "https://open.kakao.com/o/sxelLqJi",
-  ceoImage: "/images/ceo.png",
 } as const;
 
 export const PRICING = {
-  rankingSetup: 500_000,
-  rankingMonthly: 300_000,
+  rankingSetup: 1_500_000,
+  rankingMonthly: 700_000,
   rankingMonthlyCompare: 4_800_000,
   rankingKeywords: 1000,
 } as const;
+
+export const PRICE_LINE = `제작 ${PRICING.rankingSetup / 10000}만 · 월 ${PRICING.rankingMonthly / 10000}만`;
 
 export const SERVICES = [
   {
@@ -117,7 +117,7 @@ export const PROCESS = [
 export const COMPARE = [
   { item: "방식", others: "블로그·카페 대행, 받아서 넘김", us: "사이트에 심고 직접 실행" },
   { item: "키워드", others: "키워드 하나 · 월 수십만 원", us: "월 글 1,000개 (1,000개 키워드)" },
-  { item: "비용", others: "견적마다 다름, 키워드마다 과금", us: "셋팅 50만 · 월 30만 정찰" },
+  { item: "비용", others: "견적마다 다름, 키워드마다 과금", us: `${PRICE_LINE} 정찰` },
   { item: "유지", others: "트래픽 끊기면 노출이 떨어짐", us: "자연 유입으로 신뢰가 쌓여 유지" },
   { item: "리스크", others: "아이디 구매 시 광고주도 처벌 위험", us: "합법 웹문서. 글이 사이트에 남음" },
 ] as const;
@@ -158,7 +158,6 @@ export const STRENGTHS = [
 export const CAREER = [
   { when: "현", title: "한국애견연맹 반려문화증진위원회 위원장", note: "현직. 2027년 위원장 임기" },
   { when: "전", title: "한국애견연맹 전람회 추진위원회 부위원장", note: "2025년부터 역임" },
-  { when: "현", title: "주식회사 인포씨에스 대표", note: "2017년부터 웹문서 상위노출 실행" },
   { when: "전", title: "부천 소상공인 온라인 홍보 자문", note: "지역 업종 사이트 유입 자문. 활동 종료" },
   { when: "전", title: "반려동물 문화교실 운영 협력", note: "2019~2021 교육·홍보 협력. 프로그램 종료" },
   { when: "전", title: "지역 광고주 실무협의 위원", note: "검색·웹문서 실무 공유. 협의체 해산" },

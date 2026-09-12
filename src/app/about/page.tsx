@@ -9,13 +9,11 @@ export default function AboutPage() {
     <div>
       <section className="stage-dark">
         <div className="mx-auto max-w-7xl px-5 py-14 md:px-8 md:py-20">
-          <p className="display text-[0.95rem] tracking-[0.18em] text-hot">CEO</p>
-          <h1 className="mt-2 text-4xl font-black md:text-6xl">{COMPANY.ceo}</h1>
-          <p className="mt-3 text-lg font-bold text-accent">
-            {COMPANY.legal} 대표 · 한국애견연맹 반려문화증진위원회 위원장
-          </p>
+          <p className="display text-[0.95rem] tracking-[0.18em] text-hot">COMPANY</p>
+          <h1 className="mt-2 text-4xl font-black md:text-6xl">{COMPANY.legal}</h1>
+          <p className="mt-3 text-lg font-bold text-accent">국내 유일 네이버 웹문서 상위노출 실행사</p>
           <p className="mt-5 max-w-2xl text-base leading-relaxed text-white/70">
-            광고 대행사가 아닙니다. 2017년부터 웹문서 상위노출을 직접 실행해 온 {COMPANY.name} 대표입니다. 네이버에서
+            광고 대행사가 아닙니다. 2017년부터 웹문서 상위노출을 직접 실행해 온 {COMPANY.name}입니다. 네이버에서
             검색하면 뜨는 사이트를 만들고, 한 달에 1,000개 글을 웹문서로 올립니다. 고객은 최저 금액으로 효과를 보게
             만드는 것이 일입니다.
           </p>
@@ -48,10 +46,6 @@ export default function AboutPage() {
               <div>
                 <dt className="text-mute">상호</dt>
                 <dd className="text-lg font-black">{COMPANY.legal}</dd>
-              </div>
-              <div>
-                <dt className="text-mute">대표</dt>
-                <dd className="font-bold">{COMPANY.ceo}</dd>
               </div>
               <div>
                 <dt className="text-mute">사업자등록번호</dt>

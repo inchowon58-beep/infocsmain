@@ -3,7 +3,6 @@ import { COMPANY } from "@/lib/constants";
 
 const FACTS = [
   { label: "상호", value: COMPANY.legal },
-  { label: "대표", value: COMPANY.ceo },
   { label: "사업자등록번호", value: COMPANY.bizNo, accent: true },
   { label: "설립", value: `${COMPANY.founded}년` },
   { label: "주소", value: COMPANY.address },

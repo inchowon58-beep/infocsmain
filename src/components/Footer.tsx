@@ -40,7 +40,6 @@ export function Footer() {
         <div className="text-sm leading-7 text-white/55">
           <p className="text-xs font-extrabold tracking-[0.16em] text-hot">회사 정보</p>
           <p className="mt-3 font-bold text-white">{COMPANY.legal}</p>
-          <p>대표 {COMPANY.ceo}</p>
           <p>사업자등록번호 {COMPANY.bizNo}</p>
           <p>{COMPANY.address}</p>
           <p>{COMPANY.years}</p>

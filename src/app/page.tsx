@@ -14,6 +14,7 @@ import {
   COMPARE,
   MANAGED_INDUSTRIES,
   NOW_ON_NAVER,
+  PRICE_LINE,
   PROCESS,
   REVIEWS,
   SERVICES,
@@ -58,7 +59,7 @@ export default async function HomePage() {
               키워드)로 올립니다. 대행이 아니라 실행입니다.
             </p>
             <p className="mt-4 max-w-2xl text-base font-bold text-hot">
-              셋팅 50만 · 월 30만. 키워드 하나 수십만이 아닙니다.
+              {PRICE_LINE}. 키워드 하나 수십만이 아닙니다.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <KakaoButton>카톡 상담</KakaoButton>
@@ -280,7 +281,7 @@ export default async function HomePage() {
           <div>
             <p className="text-sm font-extrabold text-white/80">홈페이지 노출이 필요하신 대표님</p>
             <h2 className="mt-2 text-3xl font-black md:text-5xl">지금 상담해 주세요.</h2>
-            <p className="mt-3 text-sm text-white/70">셋팅 50만 · 월 30만. 키워드 하나 수십만이 아닙니다.</p>
+            <p className="mt-3 text-sm text-white/70">{PRICE_LINE}. 키워드 하나 수십만이 아닙니다.</p>
           </div>
           <KakaoButton>카톡 상담</KakaoButton>
         </div>

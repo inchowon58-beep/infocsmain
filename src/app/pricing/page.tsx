@@ -14,8 +14,9 @@ export default function PricingPage() {
           <p className="display text-[0.95rem] tracking-[0.18em] text-hot">PRICING</p>
           <h1 className="mt-3 text-4xl font-black md:text-6xl">실행사는 마진을 붙이지 않습니다.</h1>
           <p className="mt-4 max-w-2xl text-white/70">
-            광고 대행이 아닙니다. 우리가 직접 개발하고 실행하니 최저 금액으로 효과를 보게 만듭니다. 셋팅 50만, 월
-            글 1,000개 발행(1,000개 키워드)은 대행 기준 480만이 아니라 30만입니다.
+            광고 대행이 아닙니다. 우리가 직접 개발하고 실행하니 최저 금액으로 효과를 보게 만듭니다. 사이트 제작{" "}
+            {formatMan(PRICING.rankingSetup)}, 월 관리 {formatMan(PRICING.rankingMonthly)}입니다. 월 글 1,000개
+            발행(1,000개 키워드)은 대행 기준 {formatMan(PRICING.rankingMonthlyCompare)}이 아닙니다.
           </p>
         </div>
       </section>
@@ -33,15 +34,15 @@ export default function PricingPage() {
             </thead>
             <tbody>
               <tr className="border-t border-line">
-                <td className="px-5 py-4 font-black">사이트 셋팅</td>
-                <td className="px-5 py-4 text-paper-dim">상위노출 프로그램 이식 · 1회</td>
+                <td className="px-5 py-4 font-black">사이트 제작</td>
+                <td className="px-5 py-4 text-paper-dim">사이트 제작 · 상위노출 프로그램 이식 · 1회</td>
                 <td className="px-5 py-4 font-black">
                   {formatMan(PRICING.rankingSetup)}
                   <span className="ml-2 text-xs font-normal text-mute">{formatWon(PRICING.rankingSetup)}</span>
                 </td>
               </tr>
               <tr className="border-t border-line">
-                <td className="px-5 py-4 font-black">월 발행</td>
+                <td className="px-5 py-4 font-black">월 관리</td>
                 <td className="px-5 py-4 text-paper-dim">
                   월 글 {PRICING.rankingKeywords.toLocaleString()}개 발행 ({PRICING.rankingKeywords.toLocaleString()}개
                   키워드) · 자체 실행

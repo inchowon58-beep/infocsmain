@@ -8,6 +8,7 @@ export const COMPANY = {
   founded: 2017,
   bizNo: "224-87-00683",
   kakao: "https://open.kakao.com/o/sxelLqJi",
+  blog: "https://blog.naver.com/slgkdgh35",
 } as const;
 
 export const PRICING = {

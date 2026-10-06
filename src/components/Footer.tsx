@@ -3,10 +3,13 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { COMPANY, NAV } from "@/lib/constants";
+import { isTemporaryHome, TEMPORARY_NAV } from "@/lib/home-mode";
 import { KakaoButton } from "./KakaoButton";
 
 export function Footer() {
   const pathname = usePathname();
+  const temporary = isTemporaryHome();
+  const items = temporary ? TEMPORARY_NAV : NAV;
   if (pathname.startsWith("/admin")) return null;
 
   return (
@@ -21,14 +24,16 @@ export function Footer() {
           </div>
           <p className="mt-2 text-sm font-bold text-white/55">{COMPANY.legal}</p>
           <p className="mt-4 max-w-sm text-sm leading-relaxed text-white/55">
-            국내 유일 네이버 웹문서 상위노출 실행사. 광고 대행사가 아닙니다. 직접 실행합니다.
+            {temporary
+              ? "기업과 브랜드를 위한 홈페이지 제작 및 웹 운영 솔루션을 제공합니다."
+              : "국내 유일 네이버 웹문서 상위노출 실행사. 광고 대행사가 아닙니다. 직접 실행합니다."}
           </p>
-          <KakaoButton className="mt-5">카톡 상담</KakaoButton>
+          <KakaoButton className="mt-5">{temporary ? "상담문의" : "카톡 상담"}</KakaoButton>
         </div>
         <div>
           <p className="text-xs font-extrabold tracking-[0.16em] text-hot">메뉴</p>
           <ul className="mt-3 space-y-2">
-            {NAV.map((item) => (
+            {items.map((item) => (
               <li key={item.href}>
                 <Link href={item.href} className="font-bold text-white/80 hover:text-accent">
                   {item.label}

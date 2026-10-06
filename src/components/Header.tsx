@@ -5,11 +5,14 @@ import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { COMPANY, NAV } from "@/lib/constants";
+import { isTemporaryHome, TEMPORARY_NAV } from "@/lib/home-mode";
 import { KakaoButton } from "./KakaoButton";
 
 export function Header() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const temporary = isTemporaryHome();
+  const items = temporary ? TEMPORARY_NAV : NAV;
 
   if (pathname.startsWith("/admin")) return null;
 
@@ -22,12 +25,14 @@ export function Header() {
           </span>
           <span>
             <span className="block text-lg font-black leading-none tracking-tight">{COMPANY.name}</span>
-            <span className="text-[11px] font-bold tracking-wide text-mute">제작 · 웹문서 실행</span>
+            <span className="text-[11px] font-bold tracking-wide text-mute">
+              {temporary ? "웹사이트 제작" : "제작 · 웹문서 실행"}
+            </span>
           </span>
         </Link>
 
         <nav className="hidden items-center gap-7 md:flex">
-          {NAV.map((item) => {
+          {items.map((item) => {
             const active = pathname === item.href || pathname.startsWith(`${item.href}/`);
             return (
               <Link
@@ -39,7 +44,7 @@ export function Header() {
               </Link>
             );
           })}
-          <KakaoButton className="py-2.5 text-sm">카톡 상담</KakaoButton>
+          <KakaoButton className="py-2.5 text-sm">{temporary ? "상담문의" : "카톡 상담"}</KakaoButton>
         </nav>
 
         <button
@@ -55,7 +60,7 @@ export function Header() {
       {open ? (
         <div className="border-t border-line bg-white px-5 py-4 md:hidden">
           <nav className="flex flex-col gap-3">
-            {NAV.map((item) => (
+            {items.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
@@ -65,7 +70,7 @@ export function Header() {
                 {item.label}
               </Link>
             ))}
-            <KakaoButton className="mt-2">카톡 상담</KakaoButton>
+            <KakaoButton className="mt-2">{temporary ? "상담문의" : "카톡 상담"}</KakaoButton>
           </nav>
         </div>
       ) : null}

@@ -6,7 +6,7 @@ export const TEMPORARY_NAV = [
 ] as const;
 
 export function getHomeMode(): HomeMode {
-  return process.env.NEXT_PUBLIC_HOME_MODE === "temporary" ? "temporary" : "original";
+  return process.env.NEXT_PUBLIC_HOME_MODE?.trim() === "temporary" ? "temporary" : "original";
 }
 
 export function isTemporaryHome() {
